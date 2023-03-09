@@ -54,7 +54,8 @@ if (MODOINICIOSERVER == 'CLUSTER')
             app.use(session)
 
             app.use(usersRouter)
-
+            app.use(productsRouter)        
+            app.use(cartRtouter)  
 
             app.listen(8080, () => {
                 logger.info(`Conectado al puerto  8080 worker ${process.pid}`);
@@ -74,12 +75,6 @@ else
         app.use(express.json())
         app.use(express.static("public"))
 
-        /*
-        app.use(passport.initialize)
-        app.use(passport.session)
-
-        passport.serializeUser( (user,done) => done(null,{id:user._id,}) ) // req.user
-         */
 
         app.use(session({
             secret: 'palabrasecreta',
