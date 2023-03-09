@@ -28,19 +28,20 @@ export const deleteProductCart = async ({ body, params },res) => {
     const id = params.id
     try {
             await cart.deleteOne({_id: id})
+            return res.status(200).json({ok:'Producto eliminado correctamente'})
     } catch (error) {
         console.log(error) 
         return res.status(403).json({ error: 'Error al borrar el producto' })          
      }
 }
 
-export const emptyProductCart = async ({ body, params },res) => {
-    const id = params.id
+export const emptyProductCart = async (body,res) => {
     try {
-            await cart.deleteOne({_id: id})
+            await cart.deleteMany({})
+            return res.status(200).json({ok:'Carrito vaciado correctamente'})
     } catch (error) {
         console.log(error) 
-        return res.status(403).json({ error: 'Error al borrar el producto' })          
+        return res.status(403).json({ error: 'Error al vaciar el carrito' })          
      }
 }
 

@@ -8,7 +8,6 @@ export const registerProduct = async (req,res) => {
     try {
             const NewProduct = new ProductsModel({name, description, price, image});
             await NewProduct.save()
-            console.log('GRaba Ok') 
             return res.status(200).json({ ok: 'Producto Insertado' })  
     } catch (error) {
         console.log(error) 
@@ -29,8 +28,6 @@ export const listProducts = async (req,res) => {
 export const getProduct = async ({ body, params },res) => {
     const id = params.id
     try {
-            console.log('Y vamos')                
-            console.log(id)        
             const product = await ProductsModel.findById(id)
             if(!product) return res.status(403).json({ error: 'No existe el producto registrado en la DB' })     
             return res.status(200).send(product)
@@ -43,7 +40,6 @@ export const getProduct = async ({ body, params },res) => {
 export const updateProduct = async (req,res) => {
     const {id, name, description, price, image} = req.body
     try {
-            console.log(id)
             const product = await ProductsModel.updateOne({_id: id},{ $set: {name: name, description: description, price: price, image: image} })
             if(!product) return res.status(403).json({ error: 'No existe el producto registrado en la DB' })     
             return res.status(200).send(product)

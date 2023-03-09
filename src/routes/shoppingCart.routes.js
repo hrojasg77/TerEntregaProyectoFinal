@@ -7,8 +7,8 @@ router.post('/api/shoppingcartproducts', registerProductCart)
 
 router.get('/api/shoppingcartproducts', listProductsCart)
 
-router.delete('/api/userinfo:id', deleteProductCart)
+router.delete('/api/shoppingcartproducts/:id', deleteProductCart)
 
-router.delete('/api/userinfo', emptyProductCart)
+router.delete('/api/shoppingcartproducts', emptyProductCart)
 
 export default router
